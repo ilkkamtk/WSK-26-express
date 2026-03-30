@@ -1,0 +1,29 @@
+GET http://127.0.0.1:3000/api/v1/user
+
+
+### lisätään user
+POST http://127.0.0.1:3000/api/v1/user
+Content-Type: application/json
+
+{
+  "username": "Vito",
+  "name": "Juha",
+  "email": "juha.tauriainen@metropolia.fi",
+  "role": "teacher / failed comedian",
+  "password":"tähän oman pankin salasana"
+}
+
+### hae user id:n perusteella
+GET http://127.0.0.1:3000/api/v1/user/9592
+
+
+### päivitä userin tietoja
+PUT http://127.0.0.1:3000/api/v1/user/9592
+Content-Type: application/json
+
+{
+  "username": "Don Corleone"
+}
+
+### poistetaan user
+DELETE http://127.0.0.1:3000/api/v1/user/9592

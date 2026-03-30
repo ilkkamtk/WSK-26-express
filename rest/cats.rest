@@ -1,0 +1,29 @@
+GET http://127.0.0.1:3000/api/v1/cat
+
+
+### lisätään kissa
+POST http://127.0.0.1:3000/api/v1/cat
+Content-Type: application/json
+
+{
+  "cat_name": "Vito",
+  "fluffypants": true,
+  "weight":6,
+  "owner":"Juha",
+  "birthdate":"2007-06-1"
+}
+
+### hae kissa id:n perusteella
+GET http://127.0.0.1:3000/api/v1/cat/9592
+
+
+### päivitä kissan tietoja
+PUT http://127.0.0.1:3000/api/v1/cat/9592
+Content-Type: application/json
+
+{
+  "cat_name": "Don Corleone"
+}
+
+### poistetaan kissa
+DELETE http://127.0.0.1:3000/api/v1/cat/9592
