@@ -3,15 +3,30 @@ GET http://127.0.0.1:3000/api/v1/cat
 
 ### lisätään kissa
 POST http://127.0.0.1:3000/api/v1/cat
-Content-Type: application/json
+Content-Type: multipart/form-data; boundary=MyBoundary
 
-{
-  "cat_name": "Vito",
-  "fluffypants": true,
-  "weight":6,
-  "owner":"Juha",
-  "birthdate":"2007-06-1"
-}
+--MyBoundary
+Content-Disposition: form-data; name="cat_name"
+
+Misu
+--MyBoundary
+Content-Disposition: form-data; name="weight"
+
+6
+--MyBoundary
+Content-Disposition: form-data; name="owner"
+
+3602
+--MyBoundary
+Content-Disposition: form-data; name="birthdate"
+
+2023-10-08
+--MyBoundary
+Content-Disposition: form-data; name="cat"; filename="dog.jpg"
+Content-Type: image/jpeg
+
+< ./dog.jpg
+--MyBoundary--
 
 ### hae kissa id:n perusteella
 GET http://127.0.0.1:3000/api/v1/cat/9592
