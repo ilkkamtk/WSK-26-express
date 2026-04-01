@@ -10,7 +10,7 @@ import express from 'express';
 
 const userRouter = express.Router();
 
-// /api/v1/user
+// /api/v1/users
 userRouter.route('/').get(getUser).post(postUser);
 
 userRouter.route('/:id').get(getUserById).put(putUser).delete(deleteUser);

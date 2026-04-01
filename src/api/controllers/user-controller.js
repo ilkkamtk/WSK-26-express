@@ -23,7 +23,7 @@ const postUser = (req, res) => {
   }
 };
 
-// PUT /api/v1/user/:id - return hard coded json response:
+// PUT /api/v1/users/:id - return hard coded json response:
 // {message: 'user item updated.'}
 
 const putUser = (req, res) => {

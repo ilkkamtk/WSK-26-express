@@ -1,8 +1,8 @@
-GET http://127.0.0.1:3000/api/v1/cat
+GET http://127.0.0.1:3000/api/v1/cats
 
 
 ### lisätään kissa
-POST http://127.0.0.1:3000/api/v1/cat
+POST http://127.0.0.1:3000/api/v1/cats
 Content-Type: multipart/form-data; boundary=MyBoundary
 
 --MyBoundary
@@ -29,11 +29,11 @@ Content-Type: image/jpeg
 --MyBoundary--
 
 ### hae kissa id:n perusteella
-GET http://127.0.0.1:3000/api/v1/cat/9592
+GET http://127.0.0.1:3000/api/v1/cats/9592
 
 
 ### päivitä kissan tietoja
-PUT http://127.0.0.1:3000/api/v1/cat/9592
+PUT http://127.0.0.1:3000/api/v1/cats/9592
 Content-Type: application/json
 
 {
@@ -41,4 +41,4 @@ Content-Type: application/json
 }
 
 ### poistetaan kissa
-DELETE http://127.0.0.1:3000/api/v1/cat/9592
+DELETE http://127.0.0.1:3000/api/v1/cats/9592

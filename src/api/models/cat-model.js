@@ -36,6 +36,7 @@ const modifyCat = async (cat, id) => {
     cat,
     id,
   ]);
+  console.log('formatted sql', sql);
   const [result] = await promisePool.execute(sql);
   console.log('result', result);
   if (result.affectedRows === 0) {
