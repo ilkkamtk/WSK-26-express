@@ -4,8 +4,8 @@ const getCat = async (req, res) => {
   res.json(await listAllCats());
 };
 
-const getCatById = (req, res) => {
-  const cat = findCatById(req.params.id);
+const getCatById = async (req, res) => {
+  const cat = await findCatById(req.params.id);
   if (cat) {
     res.json(cat);
   } else {
@@ -13,11 +13,11 @@ const getCatById = (req, res) => {
   }
 };
 
-const postCat = (req, res) => {
+const postCat = async (req, res) => {
   console.log('postCat', req.file);
   // lisätään bodyyn filename
   req.body.filename = req.file.filename;
-  const result = addCat(req.body);
+  const result = await addCat(req.body);
   if (result.cat_id) {
     res.status(201);
     res.json({message: 'New cat added.', result});
@@ -29,7 +29,7 @@ const postCat = (req, res) => {
 // PUT /api/v1/cat/:id - return hard coded json response:
 // {message: 'Cat item updated.'}
 
-const putCat = (req, res) => {
+const putCat = async (req, res) => {
   // not implemented in this example, this is homework
   //res.sendStatus(200);
   res.json({message: 'Cat item updated.'});

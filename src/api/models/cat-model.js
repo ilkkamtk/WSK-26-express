@@ -1,8 +1,8 @@
 import promisePool from '../../utils/database.js';
 
 const listAllCats = async () => {
-  const [rows, info] = await promisePool.query('SELECT * FROM wsk_cats');
-  console.log('rows', rows, info);
+  const [rows] = await promisePool.query('SELECT * FROM wsk_cats');
+  // console.log('rows', rows);
   return rows;
 };
 
@@ -11,7 +11,7 @@ const findCatById = async (id) => {
     'SELECT * FROM wsk_cats WHERE cat_id = ?',
     [id]
   );
-  console.log('rows', rows);
+  // console.log('rows', rows);
   if (rows.length === 0) {
     return false;
   }
@@ -23,12 +23,12 @@ const addCat = async (cat) => {
   const sql = `INSERT INTO wsk_cats (cat_name, weight, owner, filename, birthdate)
                VALUES (?, ?, ?, ?, ?)`;
   const params = [cat_name, weight, owner, filename, birthdate];
-  const rows = await promisePool.execute(sql, params);
-  console.log('rows', rows);
-  if (rows[0].affectedRows === 0) {
+  const [result] = await promisePool.execute(sql, params);
+  console.log('result', result);
+  if (result.affectedRows === 0) {
     return false;
   }
-  return {cat_id: rows[0].insertId};
+  return {cat_id: result.insertId};
 };
 
 const modifyCat = async (cat, id) => {
@@ -36,9 +36,9 @@ const modifyCat = async (cat, id) => {
     cat,
     id,
   ]);
-  const rows = await promisePool.execute(sql);
-  console.log('rows', rows);
-  if (rows[0].affectedRows === 0) {
+  const [result] = await promisePool.execute(sql);
+  console.log('result', result);
+  if (result.affectedRows === 0) {
     return false;
   }
   return {message: 'success'};
