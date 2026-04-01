@@ -1,7 +1,7 @@
 import sharp from 'sharp';
 
 const createThumbnail = async (req, res, next) => {
-  console.log('todo: tee kuvakäsittely', req.file);
+  // console.log('todo: tee kuvakäsittely', req.file);
   if (!req.file) {
     next();
     return;
@@ -11,6 +11,10 @@ const createThumbnail = async (req, res, next) => {
   if (req.file.mimetype === 'image/png') {
     // if (req.file.mimetype.includes('/png')) {
     extension = 'png';
+  } else if (req.file.mimetype === 'image/gif') {
+    extension = 'gif';
+  } else if (req.file.mimetype === 'image/webp') {
+    extension = 'webp';
   }
 
   await sharp(req.file.path)
