@@ -1,7 +1,7 @@
 import promisePool from '../../utils/database.js';
 
 const listAllCats = async () => {
-  const [rows] = await promisePool.query('SELECT * FROM wsk_cats');
+  const [rows] = await promisePool.query('SELECT * FROM wsk_cats'); // lisää JOIN jotta owner tulee mukaan
   // console.log('rows', rows);
   return rows;
 };
