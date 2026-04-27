@@ -17,11 +17,19 @@ const createThumbnail = async (req, res, next) => {
     extension = 'webp';
   }
 
-  await sharp(req.file.path)
-    .resize(160, 160)
-    .toFile(`${req.file.path}_thumb.${extension}`);
+  try {
+    await sharp('req.file.path')
+      .resize(160, 160)
+      .toFile(`${req.file.path}_thumb.${extension}`);
 
-  next();
+    next();
+  } catch (error) {
+    console.log(error); // oikeesti tallenna lokiin (esim. winston)
+
+    const omaVirhe = new Error('Error processing image');
+    omaVirhe.status = 500;
+    next(omaVirhe);
+  }
 };
 
 export {createThumbnail};

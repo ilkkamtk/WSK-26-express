@@ -1,9 +1,12 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MywibmFtZSI6IklsZSIsInVzZXJuYW1lIjoiaWxlIiwiZW1haWwiOiJpbGVAbWV0cm9wb2xpYS5maSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzc1MDQ1Mzg5LCJleHAiOjE3NzUxMzE3ODl9.52Wi7LypfTsYYg11cdH95hCf7NKtBLkiftOy9uUFVUw
+
 GET http://127.0.0.1:3000/api/v1/cats
 
 
 ### lisätään kissa
 POST http://127.0.0.1:3000/api/v1/cats
 Content-Type: multipart/form-data; boundary=MyBoundary
+Authorization: Bearer {{token}}
 
 --MyBoundary
 Content-Disposition: form-data; name="cat_name"
@@ -13,10 +16,6 @@ Misu
 Content-Disposition: form-data; name="weight"
 
 6
---MyBoundary
-Content-Disposition: form-data; name="owner"
-
-37
 --MyBoundary
 Content-Disposition: form-data; name="birthdate"
 
@@ -35,6 +34,7 @@ GET http://127.0.0.1:3000/api/v1/cats/9592
 ### päivitä kissan tietoja
 PUT http://127.0.0.1:3000/api/v1/cats/9592
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "cat_name": "Don Corleone"
@@ -42,3 +42,4 @@ Content-Type: application/json
 
 ### poistetaan kissa
 DELETE http://127.0.0.1:3000/api/v1/cats/9592
+Authorization: Bearer {{token}}

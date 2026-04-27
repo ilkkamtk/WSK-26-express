@@ -1,3 +1,4 @@
+import {authenticateToken} from '../../middelwares/authentication.js';
 import {
   deleteUser,
   getUser,
@@ -13,6 +14,10 @@ const userRouter = express.Router();
 // /api/v1/users
 userRouter.route('/').get(getUser).post(postUser);
 
-userRouter.route('/:id').get(getUserById).put(putUser).delete(deleteUser);
+userRouter
+  .route('/:id')
+  .get(getUserById)
+  .put(authenticateToken, putUser)
+  .delete(authenticateToken, deleteUser);
 
 export default userRouter;
