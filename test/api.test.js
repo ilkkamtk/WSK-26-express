@@ -3,6 +3,7 @@ import {registerUser} from './testUser';
 // randomstring kirjasto, tee AI:llä
 
 let token = '';
+const randomstring = (length) => Math.random().toString(36).slice(2, 2 + length);
 const random = randomstring(7);
 
 describe('User related tests', () => {
