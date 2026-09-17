@@ -18,7 +18,7 @@ const createThumbnail = async (req, res, next) => {
   }
 
   try {
-    await sharp('req.file.path')
+    await sharp(req.file.path)
       .resize(160, 160)
       .toFile(`${req.file.path}_thumb.${extension}`);
 
