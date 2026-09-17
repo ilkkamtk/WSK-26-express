@@ -19,10 +19,15 @@ const getCatById = async (req, res) => {
   }
 };
 
-const postCat = async (req, res) => {
-  console.log('postCat', req.file);
+const postCat = async (req, res, next) => {
+  if (!req.file) {
+    const error = new Error('Invalid or missing file');
+    error.status = 400;
+    next(error);
+  }
   // lisätään bodyyn filename
   req.body.filename = req.file.filename;
+  req.body.owner = res.locals.user.user_id;
   const result = await addCat(req.body);
   if (result.cat_id) {
     res.status(201);

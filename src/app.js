@@ -1,5 +1,6 @@
 import api from './api/index.js';
 import express from 'express';
+import {errorHandler, notFoundHandler} from './middelwares/error-handlers.js';
 
 const app = express();
 
@@ -12,10 +13,9 @@ app.get('/', (req, res) => {
   res.send('Welcome to my REST API!');
 });
 
-app.post('/', (req, res) => {
-  console.log(req.body);
-
-  res.json({ok: true, data: req.body});
-});
+// Default for all routes not handled by routers above
+app.use(notFoundHandler);
+// Add error handler middleware as the last middleware in the chain
+app.use(errorHandler);
 
 export default app;
